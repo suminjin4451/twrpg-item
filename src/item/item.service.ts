@@ -12,7 +12,7 @@ export class ItemService {
     const bossSequence = [
       '킹콩',
       '바다 코끼리',
-      '이블 라바 스폰',
+      '이블라바 스폰',
       '마법사 왕',
       '잭 오 랜턴',
       '블러드 체페슈',
