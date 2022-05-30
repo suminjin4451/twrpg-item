@@ -12,6 +12,7 @@ export class ItemService {
     const bossSequence = [
       '킹콩',
       '바다 코끼리',
+      '이블 라바 스폰',
       '마법사 왕',
       '잭 오 랜턴',
       '블러드 체페슈',
@@ -19,6 +20,7 @@ export class ItemService {
       '능천사',
       '타천사',
       '마나 에인션트',
+      '마나 에인션트, 스피릿 비스트',
       '매드 클라운',
       '서리한, 일셰나',
       '거미제왕',
