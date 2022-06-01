@@ -10,4 +10,9 @@ export class ItemController {
     console.log(post);
     return this.itemService.findCraft(post.item, itemArray, post.loadItem);
   }
+
+  @Get()
+  async getValidation() {
+    await this.itemService.itemValidation();
+  }
 }
