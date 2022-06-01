@@ -48,8 +48,14 @@ export class ItemService {
         this.logger.error(itemName + ' is not in item.ts!');
         throw new NotFoundException();
       }
+      if (loadItem.indexOf(itemName) != -1) {
+        delete loadItem[loadItem.indexOf(itemName)];
+        this.logger.log('Find Item on loadItem! Item name is ' + itemName);
+        continue;
+      }
 
       for (let item of Items[itemName][1]) {
+        console.log(item);
         if (loadItem.indexOf(item) != -1) {
           delete loadItem[loadItem.indexOf(item)];
           this.logger.log('Find Item on loadItem! Item name is ' + item);
