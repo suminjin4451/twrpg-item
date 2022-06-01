@@ -8,17 +8,18 @@ export class ItemService {
   async findCraft(
     itemNameArray: Array<string>,
     itemArray: Array<[string, number, string]>,
+    loadItem: Array<String>,
   ) {
     const bossSequence = [
       '킹콩',
       '바다 코끼리',
       '이블라바 스폰',
-      '마법사 왕',
-      '잭 오 랜턴',
       '피의 망령',
       '왈라키아 괴인',
       '하이드라',
       '블러드 체페슈',
+      '마법사 왕',
+      '잭 오 랜턴',
       '데드렉트',
 
       '능천사',
@@ -41,16 +42,22 @@ export class ItemService {
       '에인션트 엔트',
       '암흑룡 이르베르트',
     ];
+
     for (let itemName of itemNameArray) {
       if (Items[itemName] == undefined) {
-        this.logger.log(Items[itemName]);
+        this.logger.error(itemName + ' is not in item.ts!');
         throw new NotFoundException();
       }
+
       for (let item of Items[itemName][1]) {
-        console.log(item);
+        if (loadItem.indexOf(item) != -1) {
+          delete loadItem[loadItem.indexOf(item)];
+          this.logger.log('Find Item on loadItem! Item name is ' + item);
+          continue;
+        }
         if (Items[item][0] == 'craftable') {
           this.logger.log('Item was ' + item);
-          await this.findCraft([item], itemArray);
+          await this.findCraft([item], itemArray, loadItem);
         } else if (Items[item][0] == 'gear') {
           this.logger.log('Pushed ' + item);
           itemArray.push([item, 1, Items[item][1]]);
@@ -68,7 +75,6 @@ export class ItemService {
     }
 
     itemArray.sort(function (a, b) {
-      console.log(a + ' ' + b);
       if (bossSequence.indexOf(a[2]) > bossSequence.indexOf(b[2])) {
         return 1;
       } else {

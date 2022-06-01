@@ -8,6 +8,6 @@ export class ItemController {
   async printItem(@Body() post) {
     let itemArray: Array<[string, number, string]> = [];
     console.log(post);
-    return this.itemService.findCraft(post.item, itemArray);
+    return this.itemService.findCraft(post.item, itemArray, post.loadItem);
   }
 }
