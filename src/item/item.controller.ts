@@ -12,6 +12,10 @@ export class ItemController {
   }
 
   @Get()
+  async getItem() {
+    return this.itemService.getItem();
+  }
+  @Get('/validation')
   async getValidation() {
     await this.itemService.itemValidation();
   }

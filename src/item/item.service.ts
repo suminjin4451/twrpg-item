@@ -72,6 +72,10 @@ export class ItemService {
       }
     }
   }
+  async getItem() {
+    this.logger.log('Returned');
+    return Items;
+  }
 
   async findCraft(
     itemNameArray: Array<string>,
@@ -132,7 +136,7 @@ export class ItemService {
         this.logger.log('Find Item on loadItem! Item name is ' + itemName);
         continue;
       }
-      if (Items[itemName][0] == 'gear') {
+      if (Items[itemName][0] == 'gear' || Items[itemName][0] == 'material') {
         this.logger.log('Pushed ' + itemName);
         itemArray.push([itemName, 1, Items[itemName][1]]);
         continue;
